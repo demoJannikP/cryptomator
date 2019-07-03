@@ -14,8 +14,8 @@
 
 	<developers>
 		<developer>
-			<name>Sebastian Stenzel</name>
-			<email>sebastian.stenzel@gmail.com</email>
+			<name>Jannik Pfeifer</name>
+			<email>jannik.pfeifer@accenture.com</email>
 			<timezone>+1</timezone>
 		</developer>
 	</developers>
@@ -304,6 +304,13 @@
 						</archive>
 					</configuration>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
@@ -352,6 +359,27 @@
 				<version>2.22.1</version>
 			</plugin>
 		</plugins>
+		
 	</build>
 
+  <reporting>
+    <plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-pmd-plugin</artifactId>
+		</plugin>
+        <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+  </reporting>
+
+	<distributionManagement>
+       <repository>
+         <id>internal.repo</id>
+         <name>Internal repo</name>
+         <url>file:///home/jannikpfeifer/JenkinsDemoApp/cryptomatorOut</url>
+       </repository>
+   </distributionManagement>
 </project>
