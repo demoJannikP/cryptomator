@@ -17,7 +17,10 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'main/commons/target/surefire-reports/*.xml'
+                    junit 'main/keychain/target/surefire-reports/*.xml'
+                    junit 'main/launcher/target/surefire-reports/*.xml'
+                    junit 'main/ui/target/surefire-reports/*.xml'
                 }
             }
         }
