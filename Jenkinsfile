@@ -28,6 +28,12 @@ pipeline {
     stage('Unit Test') {
         steps {
 			sh 'cd main; mvn test'
+			jacoco( 
+				  execPattern: '*/target/jacoco.exec',
+				  classPattern: '*/target/classes',
+				  sourcePattern: '*/src/main/java',
+				  exclusionPattern: '*/src/test*'
+			)
         }
         post {
             always {
