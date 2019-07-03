@@ -39,7 +39,7 @@ pipeline {
     }
     stage('Deliver') {
         steps {
-            mvn deploy
+            sh 'cd main; mvn deploy'
         }
     }
 }
