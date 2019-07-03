@@ -40,7 +40,7 @@ pipeline {
     }
     stage('Deliver') {
         steps {
-            sh 'cd main; mvn install'
+            sh 'cd main; mvn install -Prelease'
         }
     }
 }
