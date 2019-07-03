@@ -1,24 +1,33 @@
 pipeline {
     agent {
-	any{
+		any{
         	image 'maven:3-alpine'
         	args '-v /root/.m2:/root/.m2'
-	}
+		}
     }
     stages {
         stage('Build') {
             steps {
-		sh 'cd main; mvn -e -B -DskipTests clean package'
+				sh 'cd main; mvn -B -DskipTests clean package'
             }
         }
-	stage('Quality Test') {
+		stage('Quality Test') {
             steps {
-                sh 'bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs spotbugs:spotbugs'
+                sh 'mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs spotbugs:spotbugs'
             }
-	}
+			post {
+				always {
+				    recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
+				    recordIssues enabledForFailure: true, tool: checkStyle()
+				    recordIssues enabledForFailure: true, tool: spotBugs()
+				    recordIssues enabledForFailure: true, tool: cpd(pattern: '**/target/cpd.xml')
+				    recordIssues enabledForFailure: true, tool: pmdParser(pattern: '**/target/pmd.xml')
+				}
+	    	}
+		}
         stage('Unit Test') {
             steps {
-		sh 'cd main; mvn test'
+				sh 'cd main; mvn test'
             }
             post {
                 always {
