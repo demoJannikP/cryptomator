@@ -11,7 +11,12 @@ pipeline {
 		sh 'cd main; mvn -e -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+	stage('Quality Test') {
+            steps {
+                sh 'bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs spotbugs:spotbugs'
+            }
+	}
+        stage('Unit Test') {
             steps {
 		sh 'cd main; mvn test'
             }
