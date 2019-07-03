@@ -8,15 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-		sh 'cd main'
-		sh 'ls'
-                sh 'mvn -e -B -DskipTests clean package'
+		sh 'cd main; mvn -e -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-		sh 'cd main'
-                sh 'mvn test'
+		sh 'cd main; mvn test'
             }
             post {
                 always {
