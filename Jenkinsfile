@@ -29,10 +29,7 @@ pipeline {
         steps {
 			sh 'cd main; mvn test'
 			jacoco( 
-				  execPattern: '**jacoco.exec',
-				  classPattern: '**/target/classes',
-				  sourcePattern: '**/src/main/java',
-				  exclusionPattern: '**/src/test*'
+				  execPattern: '**/*.exec',
 			)
         }
         post {
