@@ -260,17 +260,6 @@
 				<module>buildkit</module>
 			</modules>
 		</profile>
-		<profile>
-			<id>coverage</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 	</profiles>
 
 	<build>
@@ -304,41 +293,34 @@
 						</archive>
 					</configuration>
 				</plugin>
-
+				<plugin>
+				  <groupId>org.jacoco</groupId>
+				  <artifactId>jacoco-maven-plugin</artifactId>
+				  <version>0.8.3</version>
+				  <executions>
+					<execution>
+					  <id>coverage-initialize</id>
+					  <goals>
+						<goal>prepare-agent</goal>
+					  </goals>
+					</execution>
+					<execution>
+					  <id>coverage-report</id>
+					  <phase>post-integration-test</phase>
+					  <goals>
+						<goal>report</goal>
+					  </goals>
+					</execution>
+				  </executions>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.7.1</version>
 				</plugin>
-
-				<plugin>
-					<groupId>org.jacoco</groupId>
-					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.8.2</version>
-					<executions>
-						<execution>
-							<id>prepare-agent</id>
-							<goals>
-								<goal>prepare-agent</goal>
-							</goals>	
-						</execution>
-					  <execution>
-						<id>report-aggregate</id>
-						<phase>test</phase>
-						<goals>
-						  <goal>report-aggregate</goal>
-						</goals>
-					  </execution>
-					</executions>
-					<configuration>
-						<excludes>
-							<exclude>**/*_*</exclude>
-							<exclude>**/Dagger*</exclude>
-						</excludes>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -353,6 +335,10 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -372,10 +358,6 @@
         <plugin>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-maven-plugin</artifactId>
-        </plugin>
-        <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
         </plugin>
     </plugins>
 
