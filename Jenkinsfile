@@ -10,6 +10,11 @@ pipeline {
             steps {
 				sh 'cd main; mvn -B -DskipTests clean package'
             }
+			post {
+				always {
+					recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
+				}
+			}
         }
 	stage('Quality Test') {
 		steps {
@@ -17,7 +22,6 @@ pipeline {
 		}
 		post {
 			always {
-			    recordIssues enabledForFailure: true, tools: [mavenConsole(), java(), javaDoc()]
 			    recordIssues enabledForFailure: true, tool: checkStyle()
 			    recordIssues enabledForFailure: true, tool: spotBugs()
 			    recordIssues enabledForFailure: true, tool: cpd(pattern: '**/target/cpd.xml')
