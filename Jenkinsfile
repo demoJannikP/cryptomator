@@ -18,7 +18,7 @@ pipeline {
         }
 	stage('Quality Test') {
 		steps {
-			sh 'cd main; mvn pmd:pmd pmd:cpd spotbugs:potbugs checkstyle:checkstyle'
+			sh 'cd main; mvn pmd:pmd pmd:cpd spotbugs:spotbugs checkstyle:checkstyle'
 		}
 		post {
 			always {
