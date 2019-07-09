@@ -53,7 +53,7 @@
 	<repositories>
 		<repository>
 			<id>internal.repo</id>
-			<url>${project.build.directory}</url>
+			<url>file://${project.build.directory}</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
