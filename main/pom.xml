@@ -52,8 +52,8 @@
 
 	<repositories>
 		<repository>
-			<id>ossrh-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>internal.repo</id>
+			<url>${project.build.directory}</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -372,7 +372,7 @@
 
   </reporting>
 
-	<distributionManagement>
+<distributionManagement>
        <repository>
          <id>internal.repo</id>
          <name>Internal repo</name>
