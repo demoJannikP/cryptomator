@@ -18,7 +18,7 @@ pipeline {
         }
 	stage('Quality Test') {
 		steps {
-			sh 'cd main; mvn pmd:pmd pmd:cpd com.github.spotbugs:spotbugs-maven-plugin:3.1.7:spotbugs checkstyle:checkstyle'
+			sh 'cd main; mvn pmd:pmd pmd:cpd spotbugs:potbugs checkstyle:checkstyle'
 		}
 		post {
 			always {
