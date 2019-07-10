@@ -54,8 +54,8 @@ pipeline {
     post {
         always {            
             emailext body: '''${SCRIPT, template="groovy-html.template"}''',
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+				to: '$DEFAULT_RECIPIENTS'            
         }
     }
 }
