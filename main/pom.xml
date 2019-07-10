@@ -53,7 +53,7 @@
 	<repositories>
 		<repository>
 			<id>internal.repo</id>
-			<url>file://${project.basedir}/../*/target</url>
+			<url>file://${project.build.directory}</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
