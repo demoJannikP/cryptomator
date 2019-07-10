@@ -53,7 +53,7 @@
 	<repositories>
 		<repository>
 			<id>internal.repo</id>
-			<url>file://${project.basedir}</url>
+			<url>file://home/jannikpfeifer/JenkinsDemoApp/cryptomatorOut</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
